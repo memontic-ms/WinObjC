@@ -21,7 +21,6 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" VSImporterLabel="BuildExtensionProperties">
-    <Import Project="$(WINOBJC_SDK_ROOT)\msvc\starboard.props" />
   </ImportGroup>
   <ImportGroup Label="Shared" VSImporterLabel="SharedProjects" />
   <ImportGroup Label="PropertySheets" VSImporterLabel="ConfigurationPropertySheets">
@@ -39,10 +38,11 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup VSImporterLabel="ProjectItems" />
+  <ItemGroup VSImporterLabel="ProjectItems">
+    <None Include="project.json" />
+  </ImportGroup>
   <ItemGroup VSImporterLabel="ProjectReferences" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" VSImporterLabel="BuildExtensionTargets">
-    <Import Project="$(WINOBJC_SDK_ROOT)\msvc\starboard.targets" />
   </ImportGroup>
 </Project>

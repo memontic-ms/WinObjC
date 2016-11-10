@@ -470,18 +470,6 @@ VCProject* SBWorkspace::generateGlueProject() const
   // Create the glue project and add it to the solution
   VCProject* glueProject = new VCProject(projTemplates.front());
 
-  // Get path to WinObjC SDK
-  BuildSettings globalBS(NULL);
-  String useRelativeSdkPath = globalBS.getValue("VSIMPORTER_RELATIVE_SDK_PATH");
-  String sdkDir = globalBS.getValue("WINOBJC_SDK_ROOT");
-
-  // Try to create a relative path to the SDK, if requested
-  if (strToUpper(useRelativeSdkPath) == "YES") {
-    String projectDir = sb_dirname(projTemplates.front()->getPath());
-    sdkDir = getRelativePath(projectDir, sdkDir);
-  }
-  glueProject->addGlobalProperty("WINOBJC_SDK_ROOT", platformPath(sdkDir), "'$(WINOBJC_SDK_ROOT)' == ''");
-
   // Set configuration properties
   for (auto configName : slnConfigs) {
     VCProjectConfiguration *projConfig = glueProject->addConfiguration(configName);
@@ -511,6 +499,12 @@ void SBWorkspace::generateFiles(bool genProjectionsProj)
   String outputFormat = globalBS.getValue("VSIMPORTER_OUTPUT_FORMAT");
   String solutionPath = sb_fname(getPath()) + "-" + outputFormat + ".sln";
   VSSolution* sln = new VSSolution(solutionPath);
+
+  // Copy nuget.config into the solution directory
+  String templatesDir = globalBS.getValue("VSIMPORTER_TEMPLATES_DIR");
+  String nugetConfigSource = joinPaths(templatesDir, "nuget.config");
+  String nugetConfigDest = joinPaths(sb_dirname(getPath()), "nuget.config");
+  CopyFile(nugetConfigSource.c_str(), nugetConfigDest.c_str(), false);
 
   // Register all configurations with the solution
   for (auto configName : slnConfigs) {
