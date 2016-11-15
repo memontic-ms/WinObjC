@@ -1,6 +1,9 @@
 {
   "dependencies": {
-    "NuGet.Build.Packaging": "0.1.159-dev"
+    "NuGet.Build.Packaging": "0.1.159-dev",
+    "WinObjC.Build": "*",
+    "WinObjC.Frameworks": "*"
+    "WinObjC.Packaging": "*"
   },
   "frameworks": {
     "uap10.0": { }
