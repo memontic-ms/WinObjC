@@ -1,6 +1,6 @@
 <VSTemplate Version="0.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateContent>
-    <Project OutputDirectory="$projectname$-WinStore10" File="Package.nuproj" TargetFileName="$projectname$.nuproj" Platforms="AnyCPU" ReplaceParameters="true">
+    <Project OutputDirectory="$projectname$" File="Package.nuproj" TargetFileName="$projectname$.nuproj" Platforms="AnyCPU" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="false" TargetFileName="Project.json">Project.json</ProjectItem>
     </Project>
   </TemplateContent>

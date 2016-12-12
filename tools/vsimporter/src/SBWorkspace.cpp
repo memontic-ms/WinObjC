@@ -482,6 +482,44 @@ VCProject* SBWorkspace::generateGlueProject() const
   return glueProject;
 }
 
+VCProject* SBWorkspace::generatePackageProject() const
+{
+  // Get a set of all configurations appearing in all projects
+  StringSet slnConfigs;
+  for (auto project : m_openProjects) {
+    const StringSet& configs = project.second->getSelectedConfigurations();
+    slnConfigs.insert(configs.begin(), configs.end());
+  }
+
+  // Get the template
+  VSTemplate* vstemplate = VSTemplate::getTemplate("Package");
+  sbAssertWithTelemetry(vstemplate, "Failed to get Packaging VS template");
+
+  // Set up basis template parameters
+  string projectName = getName() + "Package";
+  VSTemplateParameters templateParams;
+  templateParams.setProjectName(projectName);
+
+  // Expand the template and get the template project
+  vstemplate->expand(sb_dirname(getPath()), templateParams);
+  const VSTemplateProjectVec& projTemplates = vstemplate->getProjects();
+  sbAssertWithTelemetry(projTemplates.size() == 1, "Unexpected Package template size");
+
+  // Create the package project and add it to the solution
+  VCProject* packageProject = new VCProject(projTemplates.front());
+
+  // Set configuration properties
+  for (auto configName : slnConfigs) {
+    VCProjectConfiguration *projConfig = packageProject->addConfiguration(configName);
+    projConfig->setProperty("TargetName", getName());
+  }
+
+  // Set RootNamespace
+  packageProject->addGlobalProperty("RootNamespace", getName());
+
+  return packageProject;
+}
+
 void SBWorkspace::generateFiles(bool genProjectionsProj)
 {
   // Detect and warn about about any collisions
@@ -522,6 +560,13 @@ void SBWorkspace::generateFiles(bool genProjectionsProj)
   if (genProjectionsProj) {
     glueProject = generateGlueProject();
     sln->addProject(glueProject);
+  }
+
+  // Construct a packaging project, if required
+  VCProject* packageProject = nullptr;
+  if (genProjectionsProj) {
+      packageProject = generatePackageProject();
+      sln->addProject(packageProject);
   }
 
   // Resolve dependencies

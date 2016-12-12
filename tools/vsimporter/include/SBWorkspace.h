@@ -69,6 +69,7 @@ private:
   void selectTargets(PotentialTargetsVec& ret);
   void detectProjectCollisions() const;
   VCProject* generateGlueProject() const;
+  VCProject* generatePackageProject() const;
   void getAllTargets(PotentialTargetsVec& targets) const;
   TargetProjectPair findTargetWithName(const String& targetName) const;
 
