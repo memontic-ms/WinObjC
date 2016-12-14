@@ -1,7 +1,32 @@
 <VSTemplate Version="0.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
-  <TemplateContent>
+  <TemplateData>
+    <Name>WinObjC Package</Name>
+    <Description>A project template for creating NuGet packages (*.nupkg files)</Description>
+    <Icon Package="{e57e2daf-a455-45db-962e-31b1c9c70860}" ID="400" />
+    <TemplateID>NuGet.Packaging.VisualStudio.Package</TemplateID>
+    <ProjectType>NuGet</ProjectType>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <SortOrder>700</SortOrder>
+    <CreateInPlace>true</CreateInPlace>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>NuGetPackage</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+  </TemplateData>
+  <TemplateContent PreferedSolutionConfiguration="Debug|AnyCPU">
     <Project OutputDirectory="$projectname$" File="Package.nuproj" TargetFileName="$projectname$.nuproj" Platforms="AnyCPU" ReplaceParameters="true">
-      <ProjectItem ReplaceParameters="false" TargetFileName="Project.json">Project.json</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="project.json">project.json</ProjectItem>
+      <ProjectItem TargetFileName="$projectname$.targets" ReplaceParameters="true">Package.targets</ProjectItem>
     </Project>
   </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="extension" repositoryId="NuGet.Packaging">
+      <package id="NuGet.Build.Packaging" version="0.1.86-dev" />
+    </packages>
+  </WizardData>
 </VSTemplate>
