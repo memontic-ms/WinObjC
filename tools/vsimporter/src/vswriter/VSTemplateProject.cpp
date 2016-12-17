@@ -73,6 +73,11 @@ const StringVec& VSTemplateProject::getPlatforms() const
   return m_platforms;
 }
 
+const VSProjectType VSTemplateProject::getProjectType() const
+{
+  return m_projectType;
+}
+
 VSTemplateProject* VSTemplateProject::createFromXML(const pugi::xml_node& pNode)
 {
   // Create a VSTemplate and initialize it

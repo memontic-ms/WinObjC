@@ -94,11 +94,52 @@ bool VSTemplate::initFromXML(const pugi::xml_document& doc)
     return false;
   }
 
+  bool status = false;
+
+  // Parse template data (information about the template)
+  pugi::xpath_node dataNode = rootNode.select_single_node(std::string("TemplateData").c_str());
+  if (dataNode)
+  {
+    status = initTemplateData(dataNode.node());
+  }
+
+  // Parse template content (projects & files included in the template)
+  pugi::xpath_node contentNode = rootNode.select_single_node(std::string("TemplateContent").c_str());
+  if (contentNode)
+  {
+    status = initTemplateContents(contentNode.node());
+  }
+
+  return status;
+}
+
+bool VSTemplate::initTemplateData(const pugi::xml_node& tcNode)
+{
   bool status = true;
-  for (pugi::xml_node child = rootNode.first_child(); child && status; child = child.next_sibling()) {
-    if (child.name() == std::string("TemplateContent")) {
-      status = initTemplateContents(child);
+
+  pugi::xpath_node projectTypeNode = tcNode.select_single_node(std::string("ProjectType").c_str());
+  if (projectTypeNode)
+  {
+    if (projectTypeNode.node().child_value() == std::string("VC"))
+    {
+      m_projectType = VcxProj;
     }
+    else if (projectTypeNode.node().child_value() == std::string("NuGet"))
+    {
+      m_projectType = NuProj;
+    }
+    else
+    {
+      m_projectType = UnknownProj;
+      SBLog::warning() << "ProjectType \'" << projectTypeNode.node().child_value() << "\' in template is unsupported \tOptions: VC, NuGet" << std::endl;
+      status = false;
+    }
+  }
+  else
+  {
+    m_projectType = UnknownProj;
+    SBLog::warning() << "ProjectType in template is not defined \tOptions: VS, NuGet" << std::endl;
+    status = false;
   }
 
   return status;
@@ -110,6 +151,7 @@ bool VSTemplate::initTemplateContents(const pugi::xml_node& tcNode)
   for (pugi::xml_node child = tcNode.first_child(); child && status; child = child.next_sibling()) {
     if (child.name() == std::string("Project")) {
       VSTemplateProject* proj = VSTemplateProject::createFromXML(child);
+      proj->m_projectType = m_projectType;
       if (proj) {
         m_projects.push_back(proj);
       }

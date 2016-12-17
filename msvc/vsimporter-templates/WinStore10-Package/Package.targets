@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="GetPackageVersion" Returns="$(PackageVersion)">
+    <!-- NOTE: customize to determine your package version more dynamically -->
+    <PropertyGroup>
+      <PackageVersion>1.0.0</PackageVersion>
+    </PropertyGroup>
+  </Target>
+  <PropertyGroup Condition="'$(NuGetPackageRoot)' == ''">
+    <NuGetPackageRoot>$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+  </PropertyGroup>
+  <ImportGroup>
+    <Import Project="$(NuGetPackageRoot)nuget.build.packaging\0.1.166-dev\build\NuGet.Build.Packaging.targets" Condition="Exists('$(NuGetPackageRoot)nuget.build.packaging\0.1.166-dev\build\NuGet.Build.Packaging.targets')" />
+  </ImportGroup>
+</Project>
