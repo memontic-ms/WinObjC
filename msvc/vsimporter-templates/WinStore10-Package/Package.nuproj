@@ -8,7 +8,7 @@
     <Keyword>IslandwoodProj</Keyword>
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
-  <ItemGroup Label="Configuration">
+  <PropertyGroup Label="Configuration">
     <PackageId>$safeprojectname$</PackageId>
     <Title>$projectname$</Title>
     <Authors>$username$</Authors>
@@ -20,7 +20,7 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <Copyright>Copyright © $username$</Copyright>
     <PackageTags>$safeprojectname$</PackageTags>
-  </ItemGroup>
+  </PropertyGroup>
   <PropertyGroup Label="Configuration" VSImporterLabel="ConfigurationProperties">
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
@@ -31,5 +31,5 @@
   <ItemGroup VSImporterLabel="ProjectReferences" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <Import Project="$(NuGetAuthoringPath)\NuGet.Packaging.Authoring.targets" Condition="Exists('$(NuGetAuthoringPath)\NuGet.Packaging.Authoring.targets')" />
-  <Import Project="$projectname$.targets" />
+  <Import Project="$projectname$.Packaging.targets" />
 </Project>
