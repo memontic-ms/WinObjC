@@ -555,27 +555,33 @@ void SBWorkspace::generateFiles(bool genProjectionsProj)
     project.second->constructVCProjects(*sln, slnConfigs, vcProjects);
   }
 
-  // Construct a projections project, if required
   VCProject* glueProject = nullptr;
-  if (genProjectionsProj) {
-    glueProject = generateGlueProject();
-    sln->addProject(glueProject);
-  }
-
-  // Construct a packaging project, if required
   VCProject* packageProject = nullptr;
   if (genProjectionsProj) {
-      packageProject = generatePackageProject();
-      sln->addProject(packageProject);
+    // Construct a WinRT projections project
+    glueProject = generateGlueProject();
+    sln->addProject(glueProject);
+
+    // Construct a packaging project
+    packageProject = generatePackageProject();
+    packageProject->addProjectReference(glueProject);
+    sln->addProject(packageProject);
+    sln->addPlatform("AnyCPU");
   }
 
   // Resolve dependencies
   for (auto proj : vcProjects) {
     proj.first->resolveVCProjectDependecies(proj.second, vcProjects);
 
+    TargetProductType productType = proj.first->getProductType();
     // Add a dependency on all static/framework target projects
-    if (glueProject && proj.first->getProductType() == TargetStaticLib) {
+    if (glueProject && productType == TargetStaticLib) {
       glueProject->addProjectReference(proj.second);
+    }
+
+    // Make the packaging project dependent on all framework components
+    if (packageProject && productType != TargetProductUnknown && productType != TargetApplication) {
+      packageProject->addProjectReference(proj.second);
     }
   }
 
