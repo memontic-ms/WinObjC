@@ -6,7 +6,7 @@
   <TemplateContent>
     <Project OutputDirectory="$projectname$" File="WinRT.vcxproj" TargetFileName="$projectname$.vcxproj" Platforms="Win32;ARM" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="false" TargetFileName="Module.cpp">Module.cpp</ProjectItem>
-      <ProjectItem ReplaceParameters="false" TargetFileName="project.json">..\project.json</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="project.json">..\packageable.project.json</ProjectItem>
     </Project>
   </TemplateContent>
 </VSTemplate>
