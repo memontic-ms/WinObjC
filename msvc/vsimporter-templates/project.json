@@ -1,11 +1,15 @@
 {
   "dependencies": {
-    "NuGet.Build.Packaging": "0.1.163-pr61",
-    "WinObjC.Build": "0.0.1-*",
-    "WinObjC.Tools": "0.0.1-*"
+    "WinObjC.Frameworks": "0.2.160915-*",
+    "WinObjC.Frameworks.UWP": "0.2.160915-*",
+    "WinObjC.Frameworks.Core": "0.2.160915-*",
+    "WinObjC.Language": "0.2.160915-*",
+    "WinObjC.Logging": "0.2.160915-*"
   },
   "frameworks": {
-    "uap10.0": { "imports": [ "native" ] }
+    "uap10.0": {
+      "imports": "native"
+    }
   },
   "runtimes": {
     "win10-arm": {},
