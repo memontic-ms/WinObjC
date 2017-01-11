@@ -14,6 +14,8 @@
   </PropertyGroup>
   <ItemGroup VSImporterLabel="ProjectItems">
     <None Include="project.json" />
+    <None Include="$projectname$.Packaging.targets" />
+    <None Include="$projectname$.Packaging.targets" />
     <None Include="$projectname$.targets" />
   </ItemGroup>
   <ItemGroup VSImporterLabel="ProjectReferences" />
