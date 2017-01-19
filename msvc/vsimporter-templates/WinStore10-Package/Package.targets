@@ -6,10 +6,44 @@
       <PackageVersion>1.0.0</PackageVersion>
     </PropertyGroup>
   </Target>
-  <PropertyGroup Condition="'$(NuGetPackageRoot)' == ''">
-    <NuGetPackageRoot>$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-  </PropertyGroup>
-  <ImportGroup>
-    <Import Project="$(NuGetPackageRoot)nuget.build.packaging\0.1.166-dev\build\NuGet.Build.Packaging.targets" Condition="Exists('$(NuGetPackageRoot)nuget.build.packaging\0.1.166-dev\build\NuGet.Build.Packaging.targets')" />
-  </ImportGroup>
+
+  <ItemGroup Condition="'$(ConfigurationType)' != 'StaticLibrary'">
+      <_ReferencesFromPackage Include="$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\*.winmd"/>    
+      <_ReferencesFromPackage Include="$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\$(Configuration)\*.winmd"/>
+
+      <_DllsFromPackage Include="$(MSBuildThisFileDirectory)\runtimes\$(TargetOsAndVersion)\$(PlatformTarget)\*.dll"/>    
+      <_DllsFromPackage Include="$(MSBuildThisFileDirectory)\runtimes\$(TargetOsAndVersion)\$(PlatformTarget)\$(Configuration)\*.dll"/>
+
+      <_ImportLibsFromPackage Include="$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\*.lib"/>    
+      <_ImportLibsFromPackage Include="$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\$(Configuration)\*.lib"/>
+
+      <_XamlFilesFromPackage Include="$(MSBuildThisFileDirectory)\xaml\**\*.xaml" />
+  </ItemGroup>
+    
+  <ItemDefinitionGroup>
+      <ClangCompile>
+        <InternalSystemIncludePaths>$(MSBuildThisFileDirectory)\include\;%(InternalSystemIncludePaths);</InternalSystemIncludePaths>
+      </ClangCompile>
+
+      <!-- Add in the link bits only if its a "final" linked product likea  dll or exe -->
+      <Link Condition="'$(ConfigurationType)' != 'StaticLibrary'">
+        <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\;$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
+      </Link>
+  </ItemDefinitionGroup>
+    
+  <!-- TODO: This should use XMLPoke or similar to dynamically figure out where the important bits are packaged to.-->
+  <ItemGroup Condition="'$(ConfigurationType)' != 'StaticLibrary'">
+    
+    <Reference Include="@(_ReferencesFromPackage)">
+      <Implementation>%(Filename).dll</Implementation>
+    </Reference>
+
+    <ReferenceCopyLocalPaths Include="@(_DllsFromPackage)"/>
+    <ReferenceCopyLocalPaths Include="@(_XamlFilesFromPackage)">
+      <DestinationSubDirectory>%(RecursiveDir)</DestinationSubDirectory>
+    </ReferenceCopyLocalPaths>
+
+    <Link Include="@(_ImportLibsFromPackage)"/>
+
+  </ItemGroup>
 </Project>

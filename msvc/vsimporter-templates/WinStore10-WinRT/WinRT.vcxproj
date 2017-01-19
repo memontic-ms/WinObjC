@@ -51,7 +51,7 @@
       <GenerateServerFiles>None</GenerateServerFiles>
     </Midl>
     <Link>
-      <!--AdditionalDependencies>WinObjCRT.lib;Logging.lib;%(AdditionalDependencies)</AdditionalDependencies-->
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
   </ItemDefinitionGroup>

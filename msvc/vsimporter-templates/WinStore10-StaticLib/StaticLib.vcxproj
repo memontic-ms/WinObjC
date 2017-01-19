@@ -43,6 +43,5 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup VSImporterLabel="ProjectReferences" />
-  <ImportGroup Label="ExtensionTargets" VSImporterLabel="BuildExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" VSImporterLabel="BuildExtensionTargets" />
 </Project>

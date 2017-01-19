@@ -44,36 +44,6 @@
 
   <Target Name="AddBuiltOutput" BeforeTargets="GetPackageContents" Condition="'$(SkipGetPackageContentsForOtherPlatforms)' != 'true'">
       <ItemGroup>
-          <_HeadersRelease Include="$(MSBuildThisFileDirectory)..\Release\**\*.h"/>
-          <_HeadersDebug Include="$(MSBuildThisFileDirectory)..\Debug\**\*.h"/>
-          
-          <_BinariesRelease Include="$(MSBuildThisFileDirectory)..\Release\**\*.lib"/>
-          <_BinariesRelease Include="$(MSBuildThisFileDirectory)..\Release\**\*.pdb"/>
-          <_BinariesRelease Include="$(MSBuildThisFileDirectory)..\Release\**\*.dll"/>
-          <_BinariesRelease Include="$(MSBuildThisFileDirectory)..\Release\**\*.winmd"/>
-          <_BinariesRelease Include="$(MSBuildThisFileDirectory)..\Release\**\*.xaml"/>
-          <_BinariesDebug Include="$(MSBuildThisFileDirectory)..\Debug\**\*.lib"/>
-          <_BinariesDebug Include="$(MSBuildThisFileDirectory)..\Debug\**\*.pdb"/>
-          <_BinariesDebug Include="$(MSBuildThisFileDirectory)..\Debug\**\*.dll"/>
-          <_BinariesDebug Include="$(MSBuildThisFileDirectory)..\Debug\**\*.winmd"/>
-          <_BinariesDebug Include="$(MSBuildThisFileDirectory)..\Debug\**\*.xaml"/>
-          
-          <!-- TODO: Define better placement in the package --> 
-          <PackageFile Include="@(_HeadersRelease)">
-              <PackagePath>build\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
-          </PackageFile>
-          <PackageFile Include="@(_HeadersDebug)">
-              <PackagePath>build\Debug\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
-          </PackageFile>
-
-          <PackageFile Include="@(_BinariesRelease)">
-              <PackagePath>build\lib\$(Platform)\Release\%(Filename)%(Extension)</PackagePath>
-          </PackageFile>
-          <PackageFile Include="@(_BinariesDebug)">
-              <PackagePath>build\lib\$(Platform)\Debug\%(Filename)%(Extension)</PackagePath>
-          </PackageFile>
-      </ItemGroup>
-      <ItemGroup>
           <PackageFile Include="$(MSBuildThisFileDirectory)$(PackageId).props" Condition="Exists('$(MSBuildThisFileDirectory)$(PackageId).props')">
               <PackagePath>build\$(PackageId).props</PackagePath>
           </PackageFile>

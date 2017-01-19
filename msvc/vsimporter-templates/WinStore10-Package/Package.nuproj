@@ -15,8 +15,9 @@
   <ItemGroup VSImporterLabel="ProjectItems">
     <None Include="project.json" />
     <None Include="$projectname$.Packaging.targets" />
-    <None Include="$projectname$.Packaging.targets" />
+    <None Include="$projectname$.Packaging.props" />
     <None Include="$projectname$.targets" />
+    <None Include="$projectname$.props" />
   </ItemGroup>
   <ItemGroup VSImporterLabel="ProjectReferences" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
