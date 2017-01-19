@@ -7,6 +7,8 @@
     <Project OutputDirectory="$projectname$-WinStore10" File="StaticLib.vcxproj" TargetFileName="$projectname$.vcxproj" Platforms="Win32;ARM" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.vcxproj.filters">StaticLib.vcxproj.filters</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="project.json">..\packageable.project.json</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.props">..\packageable.props</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.targets">..\packageable.targets</ProjectItem>
     </Project>
   </TemplateContent>
 </VSTemplate>

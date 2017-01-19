@@ -16,19 +16,15 @@
     <IncludeOutputsInPackage>false</IncludeOutputsInPackage>
     <IncludeContentInPackage>false</IncludeContentInPackage>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" VSImporterLabel="ConfigurationProperties">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v140</PlatformToolset>
     <UseDotNetNativeToolchain VSImporterConfigName="Release">true</UseDotNetNativeToolchain>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" VSImporterLabel="BuildExtensionProperties">
+    <Import Project="$projectname$.props" />
   </ImportGroup>
   <ImportGroup Label="Shared" VSImporterLabel="SharedProjects" />
-  <ImportGroup Label="PropertySheets" VSImporterLabel="ConfigurationPropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <PropertyGroup Label="UserMacros" VSImporterLabel="UserMacros" />
   <ItemDefinitionGroup VSImporterLabel="ConfigurationItemDefinitions">
     <ClCompile>
@@ -55,10 +51,13 @@
       <GenerateServerFiles>None</GenerateServerFiles>
     </Midl>
     <Link>
-      <AdditionalDependencies>WinObjCRT.lib;Logging.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <!--AdditionalDependencies>WinObjCRT.lib;Logging.lib;%(AdditionalDependencies)</AdditionalDependencies-->
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
   </ItemDefinitionGroup>
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$projectname$.targets" />
+  </ImportGroup>
   <ItemGroup VSImporterLabel="ProjectItems">
     <ClCompile Include="Module.cpp" />
     <_MdMergeOutput Include="$(OutDir)\$(ProjectName).winmd" />
@@ -68,7 +67,6 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup VSImporterLabel="ProjectReferences" />
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" VSImporterLabel="BuildExtensionTargets">
   </ImportGroup>
 </Project>
