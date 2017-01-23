@@ -28,9 +28,9 @@ class VSTemplateProject;
 class VSTemplateParameters;
 
 enum VSProjectType {
-  UnknownProj = 0,
-  VcxProj = 1,
-  NuProj = 2
+  UnknownProj,
+  VcxProj,
+  NuProj
 };
 
 typedef std::vector<VSTemplateProject*> VSTemplateProjectVec;

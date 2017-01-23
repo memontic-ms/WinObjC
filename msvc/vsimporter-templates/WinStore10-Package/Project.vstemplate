@@ -29,7 +29,7 @@
   </WizardExtension>
   <WizardData>
     <packages repository="extension" repositoryId="NuGet.Packaging">
-      <package id="NuGet.Build.Packaging" version="0.1.86-dev" />
+      <package id="NuGet.Build.Packaging" version="0.1.186" />
     </packages>
   </WizardData>
 </VSTemplate>

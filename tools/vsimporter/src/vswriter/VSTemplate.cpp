@@ -138,7 +138,7 @@ bool VSTemplate::initTemplateData(const pugi::xml_node& tcNode)
   else
   {
     m_projectType = UnknownProj;
-    SBLog::warning() << "ProjectType in template is not defined \tOptions: VS, NuGet" << std::endl;
+    SBLog::warning() << "ProjectType in template is not defined \tOptions: VC, NuGet" << std::endl;
     status = false;
   }
 
