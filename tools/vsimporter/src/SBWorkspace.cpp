@@ -525,6 +525,9 @@ void SBWorkspace::generateFiles(bool genProjectionsProj)
   // Detect and warn about about any collisions
   detectProjectCollisions();
 
+  // Set different var for packaging in case we want to separate it from projections in the future
+  bool genPackagingProj = genProjectionsProj;
+
   // Get a set of all configurations appearing in all projects
   StringSet slnConfigs;
   for (auto project : m_openProjects) {
@@ -538,12 +541,6 @@ void SBWorkspace::generateFiles(bool genProjectionsProj)
   String solutionPath = sb_fname(getPath()) + "-" + outputFormat + ".sln";
   VSSolution* sln = new VSSolution(solutionPath);
 
-  // Copy nuget.config into the solution directory
-  String templatesDir = globalBS.getValue("VSIMPORTER_TEMPLATES_DIR");
-  String nugetConfigSource = joinPaths(templatesDir, "nuget.config");
-  String nugetConfigDest = joinPaths(sb_dirname(getPath()), "nuget.config");
-  CopyFile(nugetConfigSource.c_str(), nugetConfigDest.c_str(), false);
-
   // Register all configurations with the solution
   for (auto configName : slnConfigs) {
     sln->addConfiguration(configName);
@@ -556,17 +553,25 @@ void SBWorkspace::generateFiles(bool genProjectionsProj)
   }
 
   VCProject* glueProject = nullptr;
-  VCProject* packageProject = nullptr;
   if (genProjectionsProj) {
     // Construct a WinRT projections project
     glueProject = generateGlueProject();
     sln->addProject(glueProject);
+  }
 
+  VCProject* packageProject = nullptr;
+  if (genPackagingProj) {
     // Construct a packaging project
     packageProject = generatePackageProject();
     packageProject->addProjectReference(glueProject);
     sln->addProject(packageProject);
     sln->addPlatform("AnyCPU");
+
+    // Copy nuget.config into the solution directory
+    String templatesDir = globalBS.getValue("VSIMPORTER_TEMPLATES_DIR");
+    String nugetConfigSource = joinPaths(templatesDir, "nuget.config");
+    String nugetConfigDest = joinPaths(sb_dirname(getPath()), "nuget.config");
+    CopyFile(nugetConfigSource.c_str(), nugetConfigDest.c_str(), false);
   }
 
   // Resolve dependencies
