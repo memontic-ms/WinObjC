@@ -329,7 +329,7 @@ void SBProject::constructVCProjects(VSSolution& sln, const StringSet& slnConfigs
 
     // Get the template
     VSTemplate* vstemplate = VSTemplate::getTemplate(templateName);
-	sbAssertWithTelemetry(vstemplate, "Failed to get " + templateName + " VS template");
+    sbAssertWithTelemetry(vstemplate, "Failed to get " + templateName + " VS template");
 
     // Set up template parameters
     VSTemplateParameters templateParams;
@@ -339,7 +339,7 @@ void SBProject::constructVCProjects(VSSolution& sln, const StringSet& slnConfigs
     // Expand the template
     vstemplate->expand(outputDir, templateParams);
     const VSTemplateProjectVec& projTemplates = vstemplate->getProjects();
-	sbAssertWithTelemetry(projTemplates.size() == 1, "Unexpected " + templateName + " VS template size");
+    sbAssertWithTelemetry(projTemplates.size() == 1, "Unexpected " + templateName + " VS template size");
 
     for (auto projTemplate : projTemplates) {
       // Create the project from template

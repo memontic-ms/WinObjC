@@ -102,6 +102,11 @@ bool VSTemplate::initFromXML(const pugi::xml_document& doc)
   {
     status = initTemplateData(dataNode.node());
   }
+  else
+  {
+    m_projectType = UnknownProj;
+    SBLog::warning() << "No TemplateData node in template" << std::endl;
+  }
 
   // Parse template content (projects & files included in the template)
   pugi::xpath_node contentNode = rootNode.select_single_node(std::string("TemplateContent").c_str());
@@ -150,8 +155,7 @@ bool VSTemplate::initTemplateContents(const pugi::xml_node& tcNode)
   bool status = true;
   for (pugi::xml_node child = tcNode.first_child(); child && status; child = child.next_sibling()) {
     if (child.name() == std::string("Project")) {
-      VSTemplateProject* proj = VSTemplateProject::createFromXML(child);
-      proj->m_projectType = m_projectType;
+      VSTemplateProject* proj = VSTemplateProject::createFromXML(child, m_projectType);
       if (proj) {
         m_projects.push_back(proj);
       }

@@ -78,19 +78,22 @@ const VSProjectType VSTemplateProject::getProjectType() const
   return m_projectType;
 }
 
-VSTemplateProject* VSTemplateProject::createFromXML(const pugi::xml_node& pNode)
+VSTemplateProject* VSTemplateProject::createFromXML(const pugi::xml_node& pNode, const VSProjectType projectType)
 {
   // Create a VSTemplate and initialize it
   VSTemplateProject* ret = new VSTemplateProject();
-  if (!ret->initFromXML(pNode)) {
+  if (!ret->initFromXML(pNode, projectType)) {
     delete ret;
     ret = NULL;
   }
   return ret;
 }
 
-bool VSTemplateProject::initFromXML(const pugi::xml_node& pNode)
+bool VSTemplateProject::initFromXML(const pugi::xml_node& pNode, const VSProjectType projectType)
 {
+  // Set project type (VC, NuProj, Unknown)
+  m_projectType = projectType;
+
   // Create a ProjectItem from the project description
   ProjectItem* projectDesc = new ProjectItem;
   projectDesc->inFile = pNode.attribute("File").value();
