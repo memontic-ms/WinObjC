@@ -444,7 +444,7 @@ void SBWorkspace::detectProjectCollisions() const
   }
 }
 
-VCProject* SBWorkspace::generateGlueProject() const
+VCProject* SBWorkspace::generateGlueProject(bool packageable) const
 {
   // Get a set of all configurations appearing in all projects
   StringSet slnConfigs;
@@ -461,6 +461,7 @@ VCProject* SBWorkspace::generateGlueProject() const
   string projectName = getName() + "WinRT";
   VSTemplateParameters templateParams;
   templateParams.setProjectName(projectName);
+  templateParams.setIsPackageable(packageable);
 
   // Expand the template and get the template project
   vstemplate->expand(sb_dirname(getPath()), templateParams);
@@ -549,13 +550,13 @@ void SBWorkspace::generateFiles(bool genProjectionsProj)
   // Construct VS Projects
   std::multimap<SBTarget*, VCProject*> vcProjects;
   for (auto project : m_openProjects) {
-    project.second->constructVCProjects(*sln, slnConfigs, vcProjects);
+    project.second->constructVCProjects(*sln, slnConfigs, vcProjects, genPackagingProj);
   }
 
   VCProject* glueProject = nullptr;
   if (genProjectionsProj) {
     // Construct a WinRT projections project
-    glueProject = generateGlueProject();
+    glueProject = generateGlueProject(genPackagingProj);
     sln->addProject(glueProject);
   }
 
@@ -564,6 +565,7 @@ void SBWorkspace::generateFiles(bool genProjectionsProj)
     // Construct a packaging project
     packageProject = generatePackageProject();
     packageProject->addProjectReference(glueProject);
+    packageProject->isDeployable();
     sln->addProject(packageProject);
     sln->addPlatform("AnyCPU");
 

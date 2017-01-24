@@ -291,7 +291,7 @@ static bool headerTypeMatch(const PBXFile* file)
   return matchWildcardList(file->getFileType(), getHeaderTypes());
 }
 
-void SBProject::constructVCProjects(VSSolution& sln, const StringSet& slnConfigs, std::multimap<SBTarget*, VCProject*>& vcProjects)
+void SBProject::constructVCProjects(VSSolution& sln, const StringSet& slnConfigs, std::multimap<SBTarget*, VCProject*>& vcProjects, bool packageable)
 {
   // Nothing to do if project contains no queued targets
   if (m_existingTargets.empty()) {
@@ -335,6 +335,7 @@ void SBProject::constructVCProjects(VSSolution& sln, const StringSet& slnConfigs
     VSTemplateParameters templateParams;
     templateParams.setProjectName(target.second->getName());
     templateParams.setPublisherName(m_buildSettings->getValue("USER"));
+    templateParams.setIsPackageable(packageable);
 
     // Expand the template
     vstemplate->expand(outputDir, templateParams);
