@@ -521,13 +521,10 @@ VCProject* SBWorkspace::generatePackageProject() const
   return packageProject;
 }
 
-void SBWorkspace::generateFiles(bool genProjectionsProj)
+void SBWorkspace::generateFiles(bool genProjectionsProj, bool genPackagingProj)
 {
   // Detect and warn about about any collisions
   detectProjectCollisions();
-
-  // Set different var for packaging in case we want to separate it from projections in the future
-  bool genPackagingProj = genProjectionsProj;
 
   // Get a set of all configurations appearing in all projects
   StringSet slnConfigs;

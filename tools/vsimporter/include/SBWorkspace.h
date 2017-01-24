@@ -41,7 +41,7 @@ public:
 
   /* Called from main */
   void printSummary() const;
-  void generateFiles(bool genProjectionsProj);
+  void generateFiles(bool genProjectionsProj, bool genPackagingProj);
   void queueSchemes(const StringSet& schemeNames, const StringSet& configNames);
   void queueTargets(const StringSet& targetNames, const StringSet& configNames);
   /********************/
