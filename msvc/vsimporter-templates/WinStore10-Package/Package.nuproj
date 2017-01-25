@@ -18,6 +18,10 @@
     <None Include="$projectname$.Packaging.props" />
     <None Include="$projectname$.targets" />
     <None Include="$projectname$.props" />
+    <None Include="Readme.txt">
+      <IncludeInPackage>true</IncludeInPackage>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup VSImporterLabel="ProjectReferences" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />

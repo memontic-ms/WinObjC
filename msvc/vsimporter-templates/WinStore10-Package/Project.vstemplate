@@ -21,6 +21,7 @@
       <ProjectItem TargetFileName="$projectname$.props" ReplaceParameters="true">Package.props</ProjectItem>
       <ProjectItem TargetFileName="$projectname$.Packaging.targets" ReplaceParameters="true">Package.Packaging.targets</ProjectItem>
       <ProjectItem TargetFileName="$projectname$.Packaging.props" ReplaceParameters="true">Package.Packaging.props</ProjectItem>
+      <ProjectItem TargetFileName="Readme.txt" ReplaceParameters="true">Readme.txt</ProjectItem>
     </Project>
   </TemplateContent>
   <WizardExtension>
