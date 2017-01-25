@@ -562,7 +562,6 @@ void SBWorkspace::generateFiles(bool genProjectionsProj, bool genPackagingProj)
     // Construct a packaging project
     packageProject = generatePackageProject();
     packageProject->addProjectReference(glueProject);
-    packageProject->isDeployable();
     sln->addProject(packageProject);
     sln->addPlatform("AnyCPU");
 
