@@ -51,7 +51,6 @@
       <GenerateServerFiles>None</GenerateServerFiles>
     </Midl>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
   </ItemDefinitionGroup>
