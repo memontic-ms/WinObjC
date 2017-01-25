@@ -35,11 +35,4 @@
       </PackageFile>
     </ItemGroup>
   </Target>
-  
-    <Target Name="GetPackageVersion" Returns="$(PackageVersion)">
-    <PropertyGroup>
-      <!-- TODO: Reference common package version -->
-      <PackageVersion Condition="'$(PackageVersion)' == ''">0.0.1</PackageVersion>
-    </PropertyGroup>
-  </Target>
 </Project>

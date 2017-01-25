@@ -52,12 +52,4 @@
           </PackageFile>
       </ItemGroup>
   </Target>
-
-  <Target Name="GetPackageVersion" Returns="$(PackageVersion)">
-    <PropertyGroup>
-      <!-- TODO: Remove pre-release references -->
-      <PackageVersion Condition="'$(PackageVersion)' == ''">$(BasePackageVersion)-$([System.DateTime]::Now.ToString(yyyyMMddHHmmss)).pr</PackageVersion>
-    </PropertyGroup>
-  </Target>
-  
 </Project>

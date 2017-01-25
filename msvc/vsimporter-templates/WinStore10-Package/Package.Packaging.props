@@ -6,26 +6,38 @@
   </PropertyGroup>
     
   <PropertyGroup>
-      <PackageId>$safeprojectname$</PackageId>
-      <Title>$projectname$</Title>
-      <Authors>$username$</Authors>
-      <Owners>$username$</Owners>
-      <Summary>$projectname$</Summary>
-      <Description>$projectname$</Description>
-      <PackageReleaseNotes></PackageReleaseNotes>
-      <PackageProjectUrl></PackageProjectUrl>
-      <PackageLicenseUrl></PackageLicenseUrl>
-      <Copyright>Copyright © $username$</Copyright>
-      <PackageTags>$safeprojectname$</PackageTags>
-      <IsDevelopmentDependency>true</IsDevelopmentDependency>
-      <IncludeSymbolsInPackage>false</IncludeSymbolsInPackage>
-      <IncludeFrameworkReferencesInPackage>false</IncludeFrameworkReferencesInPackage>
-      <NoPackageAnalysis>true</NoPackageAnalysis>
+    <PackageId>FacebookSDKPackage</PackageId>
+    <Title>FacebookSDKPackage</Title>
+    <Authors>$username$</Authors>
+    <Owners>$username$</Owners>
+    <Summary>FacebookSDKPackage</Summary>
+    <Description>FacebookSDKPackage</Description>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <Copyright>Copyright © $username$</Copyright>
+    <PackageTags>FacebookSDKPackage</PackageTags>
+    <IsDevelopmentDependency>true</IsDevelopmentDependency>
+    <IncludeSymbolsInPackage>false</IncludeSymbolsInPackage>
+    <IncludeFrameworkReferencesInPackage>false</IncludeFrameworkReferencesInPackage>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
   </PropertyGroup>
 
-  <!-- TODO: read in BasePackageVersion from somewhere useful -->
   <PropertyGroup>
-      <BasePackageVersion>0.0.1</BasePackageVersion>
+        <GetPackageVersionDependsOn>SetPackageVersion;$(GetPackageVersionDependsOn);</GetPackageVersionDependsOn>
   </PropertyGroup>
+  <Target Name="SetPackageVersion" Returns="$(PackageVersion)" DependsOnTargets="$(GitVersionDependsOn)">
+    <Warning Condition="'$(GitBranch)' == ''"
+        Text="Cannot determine git branch - default package version will be applied. Please make sure GitInfo is listed in the project.json for this project and that git.exe is part of the PATH environment variable." />
+
+    <PropertyGroup>
+        <PackageTimestamp Condition="'$(PackageTimestamp)' == ''">$([System.DateTime]::Now.ToString(yyyyMMddHHmmss))</PackageTimestamp>
+
+        <PackageVersion Condition="'$(PackageVersion)' == '' And '$(GitBranch)' == ''">0.0.1-$(PackageTimestamp).pr"</PackageVersion>
+        <PackageVersion Condition="'$(PackageVersion)' == '' And '$(GitBranch)' == 'master'">$(GitBaseVersionMajor).$(GitBaseVersionMinor).$(PackageTimestamp)</PackageVersion>
+        <PackageVersion Condition="'$(PackageVersion)' == '' And '$(GitBranch)' == 'develop'">$(GitBaseVersionMajor).$(GitBaseVersionMinor).$([MSBuild]::Add('$(GitBaseVersionPatch)', '1'))-$(PackageTimestamp).dev</PackageVersion>
+        <PackageVersion Condition="'$(PackageVersion)' == ''">$(GitBaseVersionMajor).$(GitBaseVersionMinor).$([MSBuild]::Add('$(GitBaseVersionPatch)', '1'))-$(PackageTimestamp).pr</PackageVersion>
+    </PropertyGroup>
+  </Target>
 
 </Project>

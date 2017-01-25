@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
-   "NuGet.Build.Packaging": "0.1.186"
+    "GitInfo": "1.1.32",
+    "NuGet.Build.Packaging": "0.1.186"
   },
   "frameworks": {
     "native,Version=v1.0": {

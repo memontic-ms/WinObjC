@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="GetPackageVersion" Returns="$(PackageVersion)">
-    <!-- NOTE: customize to determine your package version more dynamically -->
-    <PropertyGroup>
-      <PackageVersion>1.0.0</PackageVersion>
-    </PropertyGroup>
-  </Target>
-
   <ItemGroup Condition="'$(ConfigurationType)' != 'StaticLibrary'">
       <_ReferencesFromPackage Include="$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\*.winmd"/>    
       <_ReferencesFromPackage Include="$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\$(Configuration)\*.winmd"/>
@@ -25,7 +18,7 @@
         <InternalSystemIncludePaths>$(MSBuildThisFileDirectory)\include\;%(InternalSystemIncludePaths);</InternalSystemIncludePaths>
       </ClangCompile>
 
-      <!-- Add in the link bits only if its a "final" linked product likea  dll or exe -->
+      <!-- Add in the link bits only if its a "final" linked product like a  dll or exe -->
       <Link Condition="'$(ConfigurationType)' != 'StaticLibrary'">
         <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\;$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
       </Link>
