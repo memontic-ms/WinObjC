@@ -6,17 +6,17 @@
   </PropertyGroup>
     
   <PropertyGroup>
-    <PackageId>FacebookSDKPackage</PackageId>
-    <Title>FacebookSDKPackage</Title>
+    <PackageId>$safeprojectname$</PackageId>
+    <Title>$projectname$</Title>
     <Authors>$username$</Authors>
     <Owners>$username$</Owners>
-    <Summary>FacebookSDKPackage</Summary>
-    <Description>FacebookSDKPackage</Description>
+    <Summary>$projectname$</Summary>
+    <Description>$projectname$</Description>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <Copyright>Copyright © $username$</Copyright>
-    <PackageTags>FacebookSDKPackage</PackageTags>
+    <PackageTags>$safeprojectname$</PackageTags>
     <IsDevelopmentDependency>true</IsDevelopmentDependency>
     <IncludeSymbolsInPackage>false</IncludeSymbolsInPackage>
     <IncludeFrameworkReferencesInPackage>false</IncludeFrameworkReferencesInPackage>
@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-        <GetPackageVersionDependsOn>SetPackageVersion;$(GetPackageVersionDependsOn);</GetPackageVersionDependsOn>
+    <GetPackageVersionDependsOn>SetPackageVersion;$(GetPackageVersionDependsOn);</GetPackageVersionDependsOn>
   </PropertyGroup>
   <Target Name="SetPackageVersion" Returns="$(PackageVersion)" DependsOnTargets="$(GitVersionDependsOn)">
     <Warning Condition="'$(GitBranch)' == ''"
