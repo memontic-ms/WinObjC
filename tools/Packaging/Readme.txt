@@ -1,4 +1,5 @@
-﻿# Packaging Readme
+﻿# WinObjC.Packaging Readme
 
-Include this package in all projects within a solution that you wish to include
-in a single package of your own.
+Dependents of this package should be one of the following:
+1. A .vcxproj that needs to be packaged
+2. A .nuproj that will package one or more .vcxproj

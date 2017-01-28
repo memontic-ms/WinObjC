@@ -7,10 +7,6 @@
 -->
 
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="ImportNuProjProps" BeforeTargets="Build">
-    <Warning Text="NuProj Props" />
-  </Target>
-
   <PropertyGroup>
     <IsDevelopmentDependency>true</IsDevelopmentDependency>
     <IncludeSymbolsInPackage>false</IncludeSymbolsInPackage>

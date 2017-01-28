@@ -7,15 +7,11 @@
 -->
 
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="ImportVcxProjProps" BeforeTargets="Build">
-    <Warning Text="VcxProj Props" />
-  </Target>
-
   <PropertyGroup Label="Globals">
     <IncludeOutputsInPackage>false</IncludeOutputsInPackage>
     <IncludeContentInPackage>false</IncludeContentInPackage>
   </PropertyGroup>
-  
+
   <ItemDefinitionGroup>
     <_MainProjectOutput>
       <IsPackable>$(IsPackable)</IsPackable>

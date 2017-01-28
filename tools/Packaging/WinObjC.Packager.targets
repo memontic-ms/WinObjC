@@ -48,15 +48,4 @@
       <PackageFile Include="@(_OtherPackageContents)" />
     </ItemGroup>
   </Target>
-
-  <!--<Target Name="AddBuiltOutput" BeforeTargets="GetPackageContents" Condition="'$(SkipGetPackageContentsForOtherPlatforms)' != 'true'">
-    <ItemGroup>
-      <PackageFile Include="$(MSBuildThisFileDirectory)$(PackageId).props" Condition="Exists('$(MSBuildThisFileDirectory)$(PackageId).props')">
-        <PackagePath>build\$(PackageId).props</PackagePath>
-      </PackageFile>
-      <PackageFile Include="$(MSBuildThisFileDirectory)$(PackageId).targets" Condition="Exists('$(MSBuildThisFileDirectory)$(PackageId).targets')">
-        <PackagePath>build\$(PackageId).targets</PackagePath>
-      </PackageFile>
-    </ItemGroup>
-  </Target>-->
 </Project>
