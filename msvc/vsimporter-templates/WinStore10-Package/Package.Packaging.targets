@@ -42,7 +42,8 @@
 
   </Target>
 
-  <Target Name="AddBuiltOutput" BeforeTargets="GetPackageContents" Condition="'$(SkipGetPackageContentsForOtherPlatforms)' != 'true'">
+  <!-- Add additional items to the package here -->
+<!--   <Target Name="AddBuiltOutput" BeforeTargets="GetPackageContents" Condition="'$(SkipGetPackageContentsForOtherPlatforms)' != 'true'">
       <ItemGroup>
           <PackageFile Include="$(MSBuildThisFileDirectory)$(PackageId).props" Condition="Exists('$(MSBuildThisFileDirectory)$(PackageId).props')">
               <PackagePath>build\$(PackageId).props</PackagePath>
@@ -51,5 +52,5 @@
               <PackagePath>build\$(PackageId).targets</PackagePath>
           </PackageFile>
       </ItemGroup>
-  </Target>
+  </Target> -->
 </Project>

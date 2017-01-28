@@ -7,8 +7,6 @@
     <Project OutputDirectory="$projectname$" File="WinRT.vcxproj" TargetFileName="$projectname$.vcxproj" Platforms="Win32;ARM" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="false" TargetFileName="Module.cpp">Module.cpp</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="project.json">..\$packageconfig$project.json</ProjectItem>
-      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.props">..\packageable.props</ProjectItem>
-      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.targets">..\packageable.targets</ProjectItem>
     </Project>
   </TemplateContent>
 </VSTemplate>

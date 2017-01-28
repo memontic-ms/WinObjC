@@ -10,8 +10,6 @@
     <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformMinVersion>10.0.10586.0</WindowsTargetPlatformMinVersion>
     <Keyword>IslandwoodProj</Keyword>
-    <IncludeOutputsInPackage>false</IncludeOutputsInPackage>
-    <IncludeContentInPackage>false</IncludeContentInPackage>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" VSImporterLabel="ConfigurationProperties">

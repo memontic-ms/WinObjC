@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "NuGet.Build.Packaging": "0.1.186",
+    "WinObjC.Packaging": "0.2.160915-*",
     "WinObjC.Frameworks": "0.2.160915-*",
     "WinObjC.Frameworks.UWP": "0.2.160915-*",
     "WinObjC.Frameworks.Core": "0.2.160915-*",
