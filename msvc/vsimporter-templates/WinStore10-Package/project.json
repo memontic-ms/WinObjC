@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "WinObjC.Packaging": "0.2.160915-*"
+    "WinObjC.Packaging": "*"
   },
   "frameworks": {
     "native,Version=v1.0": {

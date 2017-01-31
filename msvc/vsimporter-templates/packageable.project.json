@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "WinObjC.Packaging": "0.2.160915-*",
-    "WinObjC.Frameworks": "0.2.160915-*",
-    "WinObjC.Frameworks.UWP": "0.2.160915-*",
-    "WinObjC.Frameworks.Core": "0.2.160915-*",
-    "WinObjC.Language": "0.2.160915-*",
-    "WinObjC.Logging": "0.2.160915-*"
+    "WinObjC.Packaging": "*",
+    "WinObjC.Frameworks": "*",
+    "WinObjC.Frameworks.UWP": "*",
+    "WinObjC.Frameworks.Core": "*",
+    "WinObjC.Language": "*",
+    "WinObjC.Logging": "*"
   },
   "frameworks": {
     "uap10.0": {
