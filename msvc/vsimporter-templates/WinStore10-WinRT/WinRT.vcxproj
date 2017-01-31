@@ -39,7 +39,7 @@
     </ClCompile>
     <ClangCompile>
       <RuntimeLibrary VSImporterConfigName="Debug">MultiThreadedDebugDLL</RuntimeLibrary>
-      <IncludePaths>$(SolutionPublicHeadersDir);$(WINOBJC_SDK_ROOT)\include\xplat;$(WINOBJC_SDK_ROOT)\Frameworks\include;%(IncludePaths)</IncludePaths>
+      <IncludePaths>$(SolutionPublicHeadersDir);%(IncludePaths)</IncludePaths>
       <PreprocessorDefinitions>__MIDL_USE_C_ENUM</PreprocessorDefinitions>
       <OtherCFlags>-Wno-extern-initializer</OtherCFlags>
       <OtherCPlusPlusFlags>-Wno-extern-initializer</OtherCPlusPlusFlags>
