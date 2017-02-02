@@ -2,6 +2,7 @@
   <TemplateData>
     <Name>WinObjC Package</Name>
     <ProjectType>NuGet</ProjectType>
+  </TemplateData>
   <TemplateContent>
     <Project OutputDirectory="$projectname$" File="Package.nuproj" TargetFileName="$projectname$.nuproj" Platforms="AnyCPU;Win32;ARM" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="false" TargetFileName="project.json">project.json</ProjectItem>
