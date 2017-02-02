@@ -11,6 +11,7 @@
     <TargetOsAndVersion Condition="'$(TargetOsAndVersion)' == ''">Universal Windows</TargetOsAndVersion>
   </PropertyGroup>
 
+  <!-- Presets for an file's location in the package -->
   <PropertyGroup>
     <HasConfigurationSpecificPackageContents Condition="'$(HasConfigurationSpecificPackageContents)' == '' ">false</HasConfigurationSpecificPackageContents>
     <ShouldAssignPackageContentBasePath Condition="'$(PackageContentBasePath)' == ''">true</ShouldAssignPackageContentBasePath>
@@ -22,12 +23,14 @@
     <GetPackageContentsDependsOn>$(GetPackageContentsDependsOn);$(ComputeLinkInputsTargets);FindPublicHeaders</GetPackageContentsDependsOn>
   </PropertyGroup>
 
-  <Target Name="AddBuiltOutput" BeforeTargets="GetPackageContents"  DependsOnTargets="$(GetPackageContentsDependsOn)">
+  <Target Name="AddBuiltOutput" BeforeTargets="GetPackageContents"  DependsOnTargets="$(GetPackageContentsDependsOn)" Condition="'$(PresetPackageContents)' == 'true'">
     <ItemGroup>
+      <!-- Gather files from MSBuild output -->
       <_IncludeFiles Include="@(PublicHeader -> '%(Source)')" />
       <_BuiltProjectOutputGroupOutput Include="@(BuiltProjectOutputGroupOutput -> '%(FinalOutputPath)')" />
       <_ImportLibraryFileNames Include="$(OutDir)*.lib" />
 
+      <!-- Add MSBuild outputs into the package -->
       <PackageFile Include="@(_IncludeFiles)" Condition="Exists('%(FullPath)')">
         <PackagePath>build\include\$(MSBuildProjectName)\%(Filename)%(Extension)</PackagePath>
       </PackageFile>
