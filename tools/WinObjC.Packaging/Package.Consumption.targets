@@ -19,9 +19,11 @@
     <_ImportLibsFromPackage Include="$(MSBuildThisFileDirectory)\lib\$(TargetOsAndVersion)\$(PlatformTarget)\$(Configuration)\*.lib"/>
 
     <_XamlFilesFromPackage Include="$(MSBuildThisFileDirectory)\xaml\**\*.xaml" />
+    <_BundleFilesFromPackage Include="$(MSBuildThisFileDirectory)\bundle\**\*.*" />
+    <_ContentFilesFromPackage Include="$(MSBuildThisFileDirectory)\content\**\*.*" />
   </ItemGroup>
 
-  <!-- Link up package files for projects that consume this package -->
+  <!-- Add references to package files for projects that consume this package -->
   <ItemGroup Condition="'$(ConfigurationType)' != 'StaticLibrary'"> 
     <!-- Add references for clang -->
     <ReferenceCopyLocalPaths Include="@(_DllsFromPackage)"/>
@@ -34,6 +36,16 @@
 
     <!-- Add references for .xaml files -->
     <ReferenceCopyLocalPaths Include="@(_XamlFilesFromPackage)">
+      <DestinationSubDirectory>%(RecursiveDir)</DestinationSubDirectory>
+    </ReferenceCopyLocalPaths>
+
+    <!-- Add references for content files -->
+    <ReferenceCopyLocalPaths Include="@(_ContentFilesFromPackage)">
+      <DestinationSubDirectory>%(RecursiveDir)</DestinationSubDirectory>
+    </ReferenceCopyLocalPaths>
+
+    <!-- Add references for bundle files -->
+    <ReferenceCopyLocalPaths Include="@(_BundleFilesFromPackage)">
       <DestinationSubDirectory>%(RecursiveDir)</DestinationSubDirectory>
     </ReferenceCopyLocalPaths>
   </ItemGroup>

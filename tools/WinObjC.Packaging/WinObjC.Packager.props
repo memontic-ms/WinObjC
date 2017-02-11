@@ -23,7 +23,7 @@
     <GetPackageVersionDependsOn>SetPackageVersion;$(GetPackageVersionDependsOn);</GetPackageVersionDependsOn>
   </PropertyGroup>
   <Target Name="SetPackageVersion" Returns="$(PackageVersion)" DependsOnTargets="$(GitVersionDependsOn)" Condition="'$(PackageVersion)' == ''">
-    <Warning Condition="''$(GitBranch)' == ''"
+    <Warning Condition="'$(GitBranch)' == ''"
       Text="Cannot determine git branch - default package version will be applied. Please make sure GitInfo is listed in the project.json for this project and that git.exe is part of the PATH environment variable." />
 
     <PropertyGroup>

@@ -121,7 +121,7 @@ int main(int argc, char* argv[])
     {"workspace", required_argument, &workspaceSet, 1},
     {"scheme", required_argument, 0, 0},
     {"allschemes", required_argument, &allSchemes, 1},
-    { "templates", required_argument, 0, 0 },
+    {"templates", required_argument, 0, 0 },
     {"genprojections", no_argument, &genProjectionsFlag, 1 },
     {"genpackaging", optional_argument, &genPackagingFlag, 1 },
     {0, 0, 0, 0}
