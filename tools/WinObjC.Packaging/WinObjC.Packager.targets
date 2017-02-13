@@ -58,4 +58,13 @@
       </PackageFile>
     </ItemGroup>
   </Target>
+
+  <!-- Remove WinObjC.Packaging from project dependency in the output package nuspec -->
+  <Target Name="RemovePackageInheritance" DependsOnTargets="ReadLegacyDependencies" BeforeTargets="GetPackageContents" >
+    <ItemGroup>
+      <PackageReference Condition="'%(PackageReference.Identity)' == 'WinObjC.Packaging'">
+        <PrivateAssets>All</PrivateAssets>
+      </PackageReference>
+    </ItemGroup>
+  </Target>
 </Project>
