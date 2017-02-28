@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM">
       <Configuration>Debug</Configuration>
@@ -26,9 +26,23 @@
     <OutputName>IwNewLib</OutputName>
     <IncludeOutputsInPackage>false</IncludeOutputsInPackage>
     <IncludeContentInPackage>false</IncludeContentInPackage>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.14393.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <ImportGroup Label="ExtensionSettings">
     <Import Project="$(MSBuildThisFileDirectory)..\..\common\common-build.props" />
@@ -42,7 +56,6 @@
   <ItemGroup>
     <None Include="Project.json" />
   </ItemGroup>
-
   <!-- IwNewLib is weird in that its a lib that is directly packaged. The assumptions in common-build.targets are
        that libs will be built into dlls that are packaged not a lib directly so recreate the bit needed here to package.-->
   <Target Name="AddBuiltOutput" BeforeTargets="GetPackageContents" DependsOnTargets="$(GetPackageContentsDependsOn)">
@@ -51,5 +64,5 @@
         <PackagePath>build\lib\$(TargetOsAndVersion)\$(PlatformTarget)\%(Filename)%(Extension)</PackagePath>
       </PackageFile>
     </ItemGroup>
-  </Target>  
+  </Target>
 </Project>
