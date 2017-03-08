@@ -6,7 +6,8 @@
   </PropertyGroup>
     
   <PropertyGroup>
-      <PackageId>WinObjC.Frameworks.Core</PackageId>
+      <!-- Failsafe: '$(MSBuildProjectExtension)' == '.nuproj' -->
+      <PackageId Condition="'$(IsPackagingProject)' == 'true'">WinObjC.Frameworks.Core</PackageId>
       <Title>WinObjC.Frameworks.Core</Title>
       <Authors>Microsoft</Authors>
       <Owners>Microsoft</Owners>
@@ -24,6 +25,7 @@
       <IncludeFrameworkReferencesInPackage>false</IncludeFrameworkReferencesInPackage>
       <InferLegacyPackageReferences>false</InferLegacyPackageReferences>
       <NoPackageAnalysis>true</NoPackageAnalysis>
+      <BuildingFrameworksCore>true</BuildingFrameworksCore>
   </PropertyGroup>
 
   <!-- Inline task to check for timestamp file existence and creation-->  
