@@ -30,7 +30,7 @@
     <TargetFramework>uap10.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'Tests.Shared.Logger'">
     <PackageReference Include="NuGet.Build.Packaging" Version="0.1.186" />
     <PackageReference Include="WinObjC.Language" Version="0.2.160915-*" />
   </ItemGroup>
