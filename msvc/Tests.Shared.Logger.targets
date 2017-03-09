@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <Target Name="CopyCoreFoundationPublicHeadersToIncludes"
+<!--   <Target Name="CopyCoreFoundationPublicHeadersToIncludes"
     Inputs="@(CoreFoundationPublicHeader)"  
     Outputs="@(CoreFoundationPublicHeader -> '$(MSBuildThisFileDirectory)..\Include\CoreFoundation\%(Filename)%(Extension)')">
     <Copy
@@ -25,7 +25,7 @@
       CopyCoreFoundationPrivateHeadersToIncludes;
       CopyCoreFoundationPublicHeadersToIncludes;
     </BuildGenerateSourcesTargets>
-  </PropertyGroup>
+  </PropertyGroup> -->
 
 <!--   <PropertyGroup>
     <HasConfigurationSpecificPackageContents Condition="'$(HasConfigurationSpecificPackageContents)' == '' ">false</HasConfigurationSpecificPackageContents>
