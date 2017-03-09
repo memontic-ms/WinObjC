@@ -31,8 +31,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.186" />
     <PackageReference Include="WinObjC.Language" Version="0.2.160915-*" />
+    <PackageReference Include="Taef.Redist.Wlk" Version="1.0.170206001-nativeTargets" />
   </ItemGroup>
 
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
