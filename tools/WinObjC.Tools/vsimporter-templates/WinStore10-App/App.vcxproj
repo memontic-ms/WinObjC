@@ -4,7 +4,7 @@
   <PropertyGroup Label="Globals" VSImporterLabel="GlobalProperties">
     <ProjectName>$projectname$</ProjectName>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
@@ -16,7 +16,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" VSImporterLabel="ConfigurationProperties">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <UseDotNetNativeToolchain VSImporterConfigName="Release">true</UseDotNetNativeToolchain>
     <Optimize VSImporterConfigName="Release">true</Optimize>
   </PropertyGroup>

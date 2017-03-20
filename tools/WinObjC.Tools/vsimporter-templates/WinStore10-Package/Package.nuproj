@@ -10,7 +10,7 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" VSImporterLabel="ConfigurationProperties">
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <ItemGroup VSImporterLabel="ProjectItems">
     <None Include="project.json" />
