@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <DefaultLanguage Condition="'$(DefaultLanguage)'==''">en-US</DefaultLanguage>
-    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)'==''">14.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)'==''">15.0</MinimumVisualStudioVersion>
     <AppContainerApplication Condition="'$(AppContainerApplication)'==''">true</AppContainerApplication>
     <ApplicationType Condition="'$(ApplicationType)'==''">Windows Store</ApplicationType>
     <ApplicationTypeRevision Condition="'$(ApplicationTypeRevision)'==''">10.0</ApplicationTypeRevision>
